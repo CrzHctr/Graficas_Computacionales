@@ -117,7 +117,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="Debug\GráficasComputacionales.log" />
     <Text Include="Debug\Prueba.txt" />
     <Text Include="Prueba.txt" />
   </ItemGroup>
@@ -137,6 +136,12 @@
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Default.frag" />
+    <None Include="Default.vert" />
+    <None Include="DiscardCenter.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

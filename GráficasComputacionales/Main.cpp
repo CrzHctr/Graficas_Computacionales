@@ -2,6 +2,7 @@
 #include <GL/freeglut.h>
 #include <iostream>
 #include <glm/glm.hpp>
+#include <math.h>
 #include <vector>
 #include "Input.h"
 
@@ -18,6 +19,7 @@ void Initialize()
 	// Creación del atributo de posiciones de los vértices.
 	// Lista de vec2
 	// Claramente en el CPU y RAM
+	/*
 	std::vector<glm::vec2> positions;
 	positions.push_back(glm::vec2(-1.0f, -1.0f));
 	positions.push_back(glm::vec2(1.0f, -1.0f));
@@ -27,8 +29,52 @@ void Initialize()
 	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	*/
 
-	// Queremos generar 1 manager
+
+	/*
+	// Claramente en el CPU y RAM
+	std::vector<glm::vec2> positions;
+	positions.push_back(glm::vec2(0.5f, -0.5f));
+	positions.push_back(glm::vec2(0.5f, 0.5f));
+	positions.push_back(glm::vec2(-0.5f, -0.5f));
+	positions.push_back(glm::vec2(-0.5f, 0.5f));
+	// Arreglo de colores en el cpu
+	std::vector<glm::vec3> colors;
+	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	colors.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+	*/
+
+	int triangulo = 0;
+	int r = 1;
+	std::vector<glm::vec2> positions;
+
+	positions.push_back(glm::vec2((0.0f), (0.0f)));
+
+	while (triangulo <= 360) {
+		double radianes = triangulo*0.01745329252f;
+		double y = r * sin(radianes);
+		double x = r * cos(radianes);
+		positions.push_back(glm::vec2(x, y));
+		triangulo++;
+	}
+
+
+	std::vector<glm::vec3> colors;
+	triangulo = 0;
+	colors.push_back(glm::vec3(1.0, 0.0, 0.0));
+	while (triangulo <= 360) {
+		double radianes = triangulo*0.01745329252f;
+		double y = 1 * sin(radianes);
+		double x = 1 * cos(radianes);
+		double z = 1 * cos(radianes);
+		triangulo++;
+	}
+
+
+	// Generamos 1 manager
 	glGenVertexArrays(1, &vao);
 	// Utilizar el vao. A partir de este momento, todos VBOs creados y configurados
 	// se van a asociar a este manager.
@@ -68,7 +114,7 @@ void Initialize()
 	// VERTEX SHADER
 	// Leemos el archivo Default.vert donde está
 	// el código del vertex shader.
-	ifile.Read("Default.vert");
+	ifile.Read("DiscardCenter.vert");
 	// Obtenemos el código fuente y lo guardamos
 	// en un string
 	std::string vertexSource = ifile.GetContents();
@@ -87,7 +133,7 @@ void Initialize()
 	// Vamos a asumir que no hay ningún error.
 	glCompileShader(vertexShaderHandle);
 
-	ifile.Read("Default.frag");
+	ifile.Read("DiscardCenter.frag");
 	std::string fragmentSource = ifile.GetContents();
 	GLuint fragmentShaderHandle = glCreateShader(GL_FRAGMENT_SHADER);
 	const GLchar *fragmentSource_c = (const GLchar*)fragmentSource.c_str();
@@ -121,7 +167,7 @@ void GameLoop()
 	// VBOs asociados automáticamente.
 	glBindVertexArray(vao);
 	// Función de dibujado sin indices.
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 362);
 	// Terminamos de utilizar el manager
 	glBindVertexArray(0);
 	// Desactivamos el manager
@@ -138,7 +184,7 @@ int main(int argc, char* argv[])
 	// en donde podemos dibujar
 	glutInit(&argc, argv);
 	// Solicitando una versión específica de OpenGL.
-	glutInitContextVersion(4, 4);
+	//glutInitContextVersion(4, 4);
 	// Iniciar el contexto de OpenGL. El contexto se refiere
 	// a las capacidades que va a tener nuestra aplicación
 	// gráfica.
@@ -154,7 +200,7 @@ int main(int argc, char* argv[])
 	// Iniciar las dimensiones de la ventana (en pixeles)
 	glutInitWindowSize(400, 400);
 	// Creamos la ventana y le damos un título.
-	glutCreateWindow("Hello World GL");
+	glutCreateWindow("Examen");
 	// Asociamos una función de render. Esta función se mandará a llamar para dibujar un frame.
 	glutDisplayFunc(GameLoop);
 
