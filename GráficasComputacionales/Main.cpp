@@ -48,6 +48,7 @@ void Initialize()
 	*/
 
 
+
 	int i;
 	int r = 1;
 	std::vector<glm::vec2> positions;
