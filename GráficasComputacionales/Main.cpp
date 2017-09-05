@@ -47,30 +47,28 @@ void Initialize()
 	colors.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
 	*/
 
-	int triangulo = 0;
+
+	int i;
 	int r = 1;
 	std::vector<glm::vec2> positions;
 
 	positions.push_back(glm::vec2((0.0f), (0.0f)));
 
-	while (triangulo <= 360) {
-		double radianes = triangulo*0.01745329252f;
+	for (i = 0; i <= 360; i++) {
+		double radianes = i*0.01745329252f;
 		double y = r * sin(radianes);
 		double x = r * cos(radianes);
 		positions.push_back(glm::vec2(x, y));
-		triangulo++;
 	}
 
 
 	std::vector<glm::vec3> colors;
-	triangulo = 0;
-	colors.push_back(glm::vec3(1.0, 0.0, 0.0));
-	while (triangulo <= 360) {
-		double radianes = triangulo*0.01745329252f;
+	colors.push_back(glm::vec3(1.0, 1.0, 1.0));
+	for (i = 0; i <= 360; i++) {
+		double radianes = i*0.01745329252f;
 		double y = 1 * sin(radianes);
 		double x = 1 * cos(radianes);
 		double z = 1 * cos(radianes);
-		triangulo++;
 	}
 
 
