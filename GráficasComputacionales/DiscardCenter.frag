@@ -4,15 +4,15 @@ in vec3 InterpolatedColor;
 
 out vec4 FragColor;
 
+uniform vec2 Resolution;
+
 void main(){
+	vec2 p = gl_FragCoord.xy / Resolution;
+	vec2 q = p - vec2(0.5f,0.5f);
 
-	vec2 x = vec2(200,200);
-	vec2 pixelPositionInWindow = gl_FragCoord.xy - x;
-
-	if(sqrt(pixelPositionInWindow.x*pixelPositionInWindow.x+pixelPositionInWindow.y*pixelPositionInWindow.y) <= 100){
-
+	if(length(q)<0.25)
 		discard;
-	}
-	
+
+
 	FragColor = vec4(InterpolatedColor, 1.0f);
 }
