@@ -29,25 +29,10 @@ void Initialize() {
 
 
 
-
-
-	/*
-	positions.push_back(glm::vec2(0.0f, 0.0f));
-	for (double i = 0; i < 361; i++) {
-	positions.push_back(glm::vec2(glm::cos(glm::radians(i)),glm::sin(glm::radians(i))));
-	}
-	*/
-
 	std::vector<glm::vec3> colors;
 	for (double i = 0; i <= 11; i++) {
 		colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 	}
-	/*
-	colors.push_back(glm::vec3(1.0f, 1.0f, 1.0f));
-	for (double i = 0; i < 361; i++) {
-	colors.push_back(glm::vec3(glm::sin(glm::radians(i)), glm::cos(glm::radians(i)), i));
-	}
-	*/
 
 	//Generamos un manager
 	glGenVertexArrays(1, &vao);
@@ -131,14 +116,6 @@ void Initialize() {
 	//Para configurar un uniform, tenemos que decirle a OpenGL, que vamos a utilizar el
 	//shader program (manager)
 
-	/*
-	glUseProgram(shaderProgram);
-
-	GLint uniformLocation = glGetUniformLocation(shaderProgram, "Resolution");
-
-	glUniform2f(uniformLocation, 400.0f, 400.0f);
-	glUseProgram(0);
-	*/
 
 }
 
@@ -174,14 +151,6 @@ void Idle() {
 void ReshapeWindow(int width, int height) {
 
 	glViewport(0, 0, width, height);
-	/*
-	//Para configurar un uniform, tenemos que decirle a OpenGL, que vamos a utilizar el
-	//shader program (manager)
-	glUseProgram(shaderProgram);
-	GLint uniformLocation = glGetUniformLocation(shaderProgram, "Resolution");
-	glUniform2f(uniformLocation, width, height);
-	glUseProgram(0);
-	*/
 }
 
 int main(int argc, char * argv[]) {
