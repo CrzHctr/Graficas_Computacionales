@@ -4,7 +4,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include <iostream>
-#include "InputFile.h"
+#include "Input.h"
 
 
 GLuint vao;
