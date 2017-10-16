@@ -121,6 +121,7 @@
     <Text Include="Prueba.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Examen1.cpp" />
@@ -134,8 +135,10 @@
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Source1.cpp" />
     <ClCompile Include="Tarea.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Input.h" />
@@ -144,6 +147,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Default.frag" />
