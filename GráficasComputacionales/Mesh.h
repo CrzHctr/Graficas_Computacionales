@@ -2,8 +2,8 @@
 
 #include <GL/glew.h>
 #include <GL/freeglut.h>
-#include <glm/glm.hpp>
 #include <vector>
+#include <glm/glm.hpp>
 
 
 class Mesh {
@@ -13,7 +13,8 @@ private:
 	GLuint _colorsVertexBufferObject;
 	GLuint _vertexCount;
 	GLuint _indicesBufferObject;
-	GLuint _indicesCount;
+	GLint _indicesCount;
+
 	void SetAttributeData(GLuint buffer, const GLsizeiptr size, const void* data, GLenum usage, GLuint locationIndex, const GLint components);
 
 public:

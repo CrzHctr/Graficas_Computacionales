@@ -36,6 +36,7 @@ void Transform::SetPosition(float x, float y, float z) {
 }
 
 void Transform::SetRotation(float x, float y, float z) {
+	//Le da una posición objetivo, llega al punto donde quieras pero ya de ahí no se mueve
 	_rotation = glm::quat(glm::radians(glm::vec3(x, y, z)));
 	//Cuando rotamos nuestra matriz de rotacion cambia, este metodo se llama cada que la rotacion cambie
 	UpdateModelMatrixRotationScale();
@@ -80,6 +81,8 @@ void Transform::MoveRight(float delta, bool world) {
 }
 
 void Transform::Translate(float x, float y, float z, bool world) {
+	//Modifica la posición
+	//A partir de la posición actual
 	if (world) {
 		_position += glm::vec3(x, y, z);
 	}
