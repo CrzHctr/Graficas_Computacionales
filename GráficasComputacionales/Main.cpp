@@ -96,11 +96,11 @@ void GameLoop()
 	_transform.SetPosition(5.0f*glm::cos(glm::radians(radianes)), 5.0f*glm::sin(glm::radians(radianes)), 0.0f);
 	radianes += 0.005f;
 
-	while (escala >= 1.0f) {
+	if (escala <= 0.25f) {
 		cambio *= -1;
 	}
 
-	while (escala <= 0.25f) {
+	else if (escala >= 1.0f) {
 		cambio *= -1;
 	}
 
