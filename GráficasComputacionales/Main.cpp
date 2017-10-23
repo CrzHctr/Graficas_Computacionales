@@ -13,7 +13,7 @@
 ShaderProgram _shaderProgram;
 Mesh geometría1;
 Transform _transform;
-Transform _transform2;
+Transform _geometria2;
 Camera _camera;
 float radianes = 0.0f;
 float cambio = 0.0001;
@@ -74,7 +74,13 @@ void Initialize()
 
 	//_transform.SetScale(20.0f, 1.0f, 20.0f);
 
-	_transform2.SetPosition(-20.0f, 6.0f, -50.0f);
+	_transform.SetScale(3.0f, 3.0f, 3.0f);
+	_transform.SetPosition(0.0f, 0.0f, 0.0f);
+
+	_geometria2.SetScale(0.5f, 0.5f, 0.5f);
+	_camera.SetPosition(0.0f, 0.0f, 25.0f);
+
+	//_transform2.SetPosition(-20.0f, 6.0f, -50.0f);
 
 	_camera.MoveForward(10);
 	//_camera.SetPosition(0.0f, 8.0f, 0.0f);
@@ -107,13 +113,13 @@ void GameLoop()
 	escala += cambio;
 
 
-	_transform2.Rotate(-0.005f, -0.005f, -0.005f, false);
-	_transform2.SetScale(escala, escala, escala);
+	_geometria2.Rotate(-0.005f, -0.005f, -0.005f, false);
+	_geometria2.SetScale(escala, escala, escala);
 
 	_shaderProgram.Activate();
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix());
 	geometría1.Draw(GL_TRIANGLES);
-	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform2.GetModelMatrix());
+	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _geometria2.GetModelMatrix());
 	geometría1.Draw(GL_TRIANGLES);
 
 	// Cuando terminamos de renderear, cambiamos los buffers.
