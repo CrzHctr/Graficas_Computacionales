@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Depthbuffer.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Examen1.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -135,11 +136,13 @@
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Source1.cpp" />
     <ClCompile Include="Tarea.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Depthbuffer.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Mesh.h" />
@@ -147,13 +150,27 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Default.frag" />
     <None Include="Default.vert" />
+    <None Include="Depth.frag" />
+    <None Include="Depth.verg" />
     <None Include="DiscardCenter.frag" />
     <None Include="DiscardCenter.vert" />
+    <None Include="Phong.frag" />
+    <None Include="Phong.verg" />
+    <None Include="Shadow.frag" />
+    <None Include="Shadow.verg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\caja.jpg" />
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\caja.jpg.jpg" />
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\pig.jpg.jpg" />
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\piso.jpg" />
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\piso.jpg.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

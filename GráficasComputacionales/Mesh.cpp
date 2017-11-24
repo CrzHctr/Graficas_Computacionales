@@ -6,6 +6,7 @@ Mesh::Mesh() {
 	_vertexArrayObject = 0;
 	_positionsVertexBufferObject = 0;
 	_colorsVertexBufferObject = 0;
+	_normalsVertexBufferObject = 0;
 	_vertexCount = 0;
 }
 
@@ -13,6 +14,8 @@ Mesh::~Mesh() {
 	glDeleteBuffers(1, &_positionsVertexBufferObject);
 	glDeleteBuffers(1, &_colorsVertexBufferObject);
 	glDeleteVertexArrays(1, &_vertexArrayObject);
+	glDeleteBuffers(1, &_normalsVertexBufferObject);
+	glDeleteBuffers(1, &_texCoordsVertexBufferObject);
 }
 
 // El método CreateMesh(vertexCount:GLint) inicializa la variable _vertexCount con el valor vertexCount
@@ -118,6 +121,20 @@ void Mesh::SetColorAttribute(std::vector<glm::vec4> colors, GLenum usage, GLuint
 // se haría de la siguiente manera : 
 // SetAttributeData(_positionsVertexBufferObject, sizeof(glm::vec3) * positions.size(), positions.data(), 
 //					usage, locationIndex, 3);
+
+
+
+void Mesh::SetNormalAttribute(std::vector<glm::vec3> normal, GLenum usage, GLuint locationIndex)
+{
+	if (normal.size() > 0 && normal.size() == _vertexCount)
+		SetAttributeData(_normalsVertexBufferObject, sizeof(glm::vec3) * normal.size(), normal.data(), usage, locationIndex, 3);
+}
+
+void Mesh::SetTexCoordAttribute(std::vector<glm::vec2> texCoords, GLenum usage, GLuint locationIndex)
+{
+	if (texCoords.size() > 0 && texCoords.size() == _vertexCount)
+		SetAttributeData(_normalsVertexBufferObject, sizeof(glm::vec3) * texCoords.size(), texCoords.data(), usage, locationIndex, 2);
+}
 
 void Mesh::SetAttributeData(GLuint buffer, const GLsizeiptr size, const void * data, GLenum usage,
 	GLuint locationIndex, const GLint components) {

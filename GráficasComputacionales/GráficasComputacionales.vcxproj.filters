@@ -16,6 +16,9 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{73900506-8475-41df-a916-26028cd0dc3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Imagenes">
+      <UniqueIdentifier>{38c542fe-702f-40be-8280-0f7adc98229e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Debug\Prueba.txt" />
@@ -67,6 +70,12 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Depthbuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h">
@@ -99,6 +108,12 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Depthbuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Default.frag">
@@ -113,5 +128,40 @@
     <None Include="DiscardCenter.vert">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="Depth.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Phong.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Shadow.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Depth.verg">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Phong.verg">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Shadow.verg">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\caja.jpg">
+      <Filter>Resource Files\Imagenes</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\caja.jpg.jpg">
+      <Filter>Resource Files\Imagenes</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\pig.jpg.jpg">
+      <Filter>Resource Files\Imagenes</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\piso.jpg">
+      <Filter>Resource Files\Imagenes</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Desktop\TC3022_graficasComputacionales-master\graficasComputacionales\piso.jpg.jpg">
+      <Filter>Resource Files\Imagenes</Filter>
+    </Image>
   </ItemGroup>
 </Project>
