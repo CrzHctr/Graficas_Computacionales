@@ -379,9 +379,11 @@ void Initialize()
 	//_transform2.SetScale(30.0f, 0.5f, 30.0f);
 	//_transform2.SetPosition(0.0f, -5.0f, 0.0f);
 	//_transform2.SetRotation(0.0f, 0.0f, 0.0f);
-	_transform.MoveUp(3, true);
-	_transform2.SetScale(150, 0.5, 150);
+	//_transform.MoveUp(3, true);
+	_transform2.SetScale(200, 0.7f, 200);
+	_transform2.SetPosition(-25.0f, 2.2f, -15.0f);
 	_transform2.MoveUp(-10, true);
+	_transform2.MoveRight(-20.0, true);
 
 	//MEÑIQUE 
 	_dedo1_1.MoveUp(7.0f, true);
@@ -633,7 +635,7 @@ void GameLoop()
 	_shaderProgram2.SetUniformi("ShadowMap", 1);*/
 	/////////////////////////////////////////////////////////////////////////////
 	/////////////////ESTE ES EL PISO!!!!
-	//_shaderProgram.Activate();
+	_shaderProgram.Activate();
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
@@ -646,7 +648,7 @@ void GameLoop()
 	_texture2.Unbind();
 	glActiveTexture(GL_TEXTURE1);
 	_depthBuffer.UnbindDepthMap();
-	//_shaderProgram.Deactivate();
+	_shaderProgram.Deactivate();
 	///////////////AQUÍ ACABA EL PISO!!!!!
 	/////////////////////////////////////////////////////////////CORREGIR
 

@@ -40,14 +40,11 @@ float IsPixelOccluded(vec4 fragPosLightSpace)
 void main()
 {
 
-	vec3 light = LightPosition;
-	vec3 camara = CamaraPosition;
 	vec3 ambient = 0.1f * normalize(LightColor);
-	vec3 L = normalize(light - PixelPosition);
+	vec3 L = normalize(LightPosition - PixelPosition);
 	vec3 R = normalize(reflect(-L, InterpolatedNormal));
 	vec3 V = normalize(CamaraPosition - PixelPosition);
-	vec3 lcolor = LightColor;
-	vec3 diffuse = clamp(dot(InterpolatedNormal, L), 0,1)*normalize(LightColor);
+	vec3 diffuse = clamp(dot(normalize(InterpolatedNormal), L), 0,1)*normalize(LightColor);
 	vec3 specular = 0.5f * pow(clamp(dot(V,R),0,1),32)*normalize(LightColor);
 	float shadow = IsPixelOccluded(PixelPositionLightSpace);
 	vec3 phong = (ambient + (1.0f - shadow) * (diffuse + specular));

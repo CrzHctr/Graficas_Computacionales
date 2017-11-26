@@ -181,33 +181,31 @@ void Mesh::SetAttributeData(GLuint buffer, const GLsizeiptr size, const void * d
 	glBindVertexArray(0);
 }
 
-void Mesh::SetIndices(std::vector<unsigned int> indices, GLenum usage) {
-	if (indices.size() != 0) {
-
+void Mesh::SetIndices(std::vector<unsigned int> indices, GLenum usage)
+{
 		_indicesCount = indices.size();
 
-		if (_indicesBufferObject != 0) {
-			glDeleteBuffers(1, &_indicesBufferObject);
+		if (_indicesCount == 0) {
+			return;
 		}
 
-		glBindVertexArray(_vertexArrayObject);
+		if (_indicesBufferObject != 0) {
+			_indicesBufferObject = 0;
+		}
 
-		glGenBuffers(1, &_indicesBufferObject);
+			glBindVertexArray(_vertexArrayObject);
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesBufferObject);
+			glGenBuffers(1, &_indicesBufferObject);
 
-		//GL_ELEMENT_ARRAY_BUFFER = Se usa ya que los indices no son atributos únicos, si no se usaría 
-		// GL_ARRAY_BUFFER
-		//sizeof(unsigned int) * indices.size() // sizeof saca el tamaño en bytes de lo que se mande
-		// y luego se multiplica por el tamaño del arreglo
-		//indices.data() es un apuntador a los datos de la lista
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), usage);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesBufferObject);
 
-		glBindVertexArray(0);
+			//GL_ELEMENT_ARRAY_BUFFER = Se usa ya que los indices no son atributos únicos, si no se usaría 
+			// GL_ARRAY_BUFFER
+			//sizeof(unsigned int) * indices.size() // sizeof saca el tamaño en bytes de lo que se mande
+			// y luego se multiplica por el tamaño del arreglo
+			//indices.data() es un apuntador a los datos de la lista
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), usage);
 
+			glBindVertexArray(0);
 
-	}
-	else {
-		return;
-	}
 }

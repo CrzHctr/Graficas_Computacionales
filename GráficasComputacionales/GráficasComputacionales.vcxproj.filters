@@ -144,7 +144,7 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="Shadow.frag">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

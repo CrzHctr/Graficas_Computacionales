@@ -14,7 +14,7 @@ private:
 	GLuint _normalsVertexBufferObject;
 	GLuint _vertexCount;
 	GLuint _indicesBufferObject;
-	GLint _indicesCount;
+	GLuint _indicesCount;
 	GLuint _texCoordsVertexBufferObject;
 
 	void SetAttributeData(GLuint buffer, const GLsizeiptr size, const void* data, GLenum usage, GLuint locationIndex, const GLint components);
