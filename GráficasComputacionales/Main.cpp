@@ -65,6 +65,9 @@ void Initialize()
 	std::vector<glm::vec3> normales;
 	std::vector<glm::vec2>Textura;
 
+	_texture.LoadTexture("caja.jpg");
+	_texture2.LoadTexture("piso.jpg");
+
 
 	//Delantera
 	positions.push_back(glm::vec3(-4.5f, -4.5f, 0.30f));
@@ -410,11 +413,7 @@ void Initialize()
 	_dedo4_2.MoveUp(4.5f, true);
 	_transform.Rotate(-73.0f, 0.00f, 0.0f, true);
 	//////////////////////////////////////////////////
-
-
-
-	_texture.LoadTexture("caja.jpg");
-	_texture2.LoadTexture("piso.jpg");
+	
 }
 
 void GameLoop()
@@ -422,6 +421,7 @@ void GameLoop()
 	//Aquí adentro pasa todo lo que queramos que se siga repitiendo
 	// Limpiamos el buffer de color y el buffer de profunidad.
 	// Siempre hacerlo al inicio del frame
+	_transform.Rotate(0.0f, 0.3f, 0.0f, true);
 	_depthBuffer.Bind();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -431,7 +431,7 @@ void GameLoop()
 
 	//True gira en los vectores globales
 	//False gira en los vectores locales
-	_transform.Rotate(0.0f, 0.3f, 0.0f, true);
+	
 	//_depthBuffer.Bind();
 
 	///////////////////////////////////////////////////////CORREGIR
@@ -500,8 +500,9 @@ void GameLoop()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	_shaderProgram.Activate();
+	_shaderProgram.SetUniformf("LightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 	_shaderProgram.SetUniformf("LightPosition", glm::vec3(0.0f, 5.0f, 0.0f));
-	_shaderProgram.SetUniformf("CameraPosition", glm::vec3(0.0f, 1.0f, 2.0f));
+	_shaderProgram.SetUniformf("CamaraPosition", glm::vec3(0.0f, 1.0f, 2.0f));
 	_shaderProgram.SetUniformi("DiffuseTexture", 0); //hola
 	_shaderProgram.SetUniformi("ShadowMap", 1);
 

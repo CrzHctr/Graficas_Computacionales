@@ -34,9 +34,9 @@ public:
 	void SetUniformVec(std::string name, glm::vec3 vec);
 
 private:
-	void DeleteAndDetachShaders();
-	void DeleteProgram();
 
 	GLuint _programHandle;
 	std::vector<std::unique_ptr<Shader>> _attachedShaders;
+	void DeleteAndDetachShaders();
+	void DeleteProgram();
 };

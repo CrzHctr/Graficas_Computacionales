@@ -15,11 +15,11 @@ Texture2D::~Texture2D()
 
 void Texture2D::LoadTexture(std::string path)
 {
-	ILuint imageID;
+	ILuint imageID = 0;
+	const char *ubicacion = path.c_str();
 	ilGenImages(1, &imageID);
 	ilBindImage(imageID);
-	ilLoadImage(path.c_str());
-
+	ilLoadImage(ubicacion);
 	glGenTextures(1, &_textureId);
 	glBindTexture(GL_TEXTURE_2D, _textureId);
 

@@ -85,10 +85,10 @@ void ShaderProgram::SetAttribute(GLuint locationIndex, std::string name)
 	glBindAttribLocation(_programHandle, locationIndex, name.c_str());
 }
 
-void ShaderProgram::SetUniformf(std::string name, float x)
+void ShaderProgram::SetUniformf(std::string name, float value)
 {
 	GLint uniformLocation = glGetUniformLocation(_programHandle, name.c_str());
-	glUniform1f(uniformLocation, x);
+	glUniform1f(uniformLocation, value);
 }
 
 void ShaderProgram::SetUniformf(std::string name, float x, float y)

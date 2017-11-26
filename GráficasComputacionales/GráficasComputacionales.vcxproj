@@ -126,7 +126,7 @@
     <ClCompile Include="Depthbuffer.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Examen1.cpp" />
-    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InputFile.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Main2.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -144,7 +144,7 @@
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Depthbuffer.h" />
     <ClInclude Include="Employee.h" />
-    <ClInclude Include="Input.h" />
+    <ClInclude Include="InputFile.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="resource.h" />

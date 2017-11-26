@@ -8,6 +8,9 @@ Mesh::Mesh() {
 	_colorsVertexBufferObject = 0;
 	_normalsVertexBufferObject = 0;
 	_vertexCount = 0;
+	_indicesBufferObject = 0;
+	_indicesCount = 0;
+	_texCoordsVertexBufferObject = 0;
 }
 
 Mesh::~Mesh() {
@@ -16,10 +19,11 @@ Mesh::~Mesh() {
 	glDeleteVertexArrays(1, &_vertexArrayObject);
 	glDeleteBuffers(1, &_normalsVertexBufferObject);
 	glDeleteBuffers(1, &_texCoordsVertexBufferObject);
+	_vertexCount = 0;
 }
 
-// El método CreateMesh(vertexCount:GLint) inicializa la variable _vertexCount con el valor vertexCount
-// enviado al método.También crea un VAO y guarda su identificador en la variable _vertexArrayObject.
+// El método CreateMesh(vertexCount:GLint) inicializa la variable _vertexCount con el valor vertexCount
+// enviado al método.También crea un VAO y guarda su identificador en la variable _vertexArrayObject.
 void Mesh::CreateMesh(GLint vertexCount) {
 	_vertexCount = vertexCount;
 	// Queremos generar 1 manager
@@ -28,9 +32,9 @@ void Mesh::CreateMesh(GLint vertexCount) {
 }
 
 
-// El método Draw() hace bind del VAO y dibuja todos los vértices de la malla poligonal utilizando las 
-// variables primitive y _vertexCount.Utilizar la función de dibujado glDrawArrays. Al finalizar la 
-// instrucción de dibujado, debe hacer un unbind del VAO.
+// El método Draw() hace bind del VAO y dibuja todos los vértices de la malla poligonal utilizando las 
+// variables primitive y _vertexCount.Utilizar la función de dibujado glDrawArrays. Al finalizar la 
+// instrucción de dibujado, debe hacer un unbind del VAO.
 void Mesh::Draw(GLenum primitive) {
 	// Utilizar el vao. A partir de este momento, todos VBOs creados y configurados
 	// se van a asociar a este manager.
@@ -39,8 +43,8 @@ void Mesh::Draw(GLenum primitive) {
 	glBindVertexArray(_vertexArrayObject);
 	//Función de dibujado sin índices
 	// glDrawArrays(GLenum mode, GLint first, GLsizei count);
-	// En donde mode especifica la primitiva a utilizar, first es el índice inicial de los VBOs para 
-	//comenzar a dibujar la geometría y count hace referencia al número de vértices a dibujar.
+	// En donde mode especifica la primitiva a utilizar, first es el índice inicial de los VBOs para 
+	//comenzar a dibujar la geometría y count hace referencia al número de vértices a dibujar.
 	//glDrawArrays(primitive, 0, _vertexCount);
 	//Terminamos de utilizar el manager y se hace
 	// unbind del VAO.
@@ -56,11 +60,11 @@ void Mesh::Draw(GLenum primitive) {
 }
 
 
-// El método SetPositionAttribute(...) recibe una lista de posiciones de vértices (positions), un hint 
-// de uso del atributo en memoria(usage) y el índice del atributo que se debe activar en el 
+// El método SetPositionAttribute(...) recibe una lista de posiciones de vértices (positions), un hint 
+// de uso del atributo en memoria(usage) y el índice del atributo que se debe activar en el 
 // shader(locationIndex), los cuales utiliza, junto con la variable de instancia 
-// _positionsVertexBufferObject, para llamar al método SetAttributeData(...). Si la lista de posiciones 
-// está vacía o el número de elementos en la lista no coincide con el valor de _vertexCount, este método 
+// _positionsVertexBufferObject, para llamar al método SetAttributeData(...). Si la lista de posiciones 
+// está vacía o el número de elementos en la lista no coincide con el valor de _vertexCount, este método 
 // no hace nada.
 void Mesh::SetPositionAttribute(std::vector<glm::vec2> positions, GLenum usage, GLuint locationIndex) {
 	if (positions.size() == 0 || positions.size() != _vertexCount) {
@@ -85,11 +89,11 @@ void Mesh::SetPositionAttribute(std::vector<glm::vec3> positions, GLenum usage, 
 
 
 
-// El método SetColorAttribute(...) recibe una lista de colores de vértices (colors), un hint de uso del 
-// atributo en memoria (usage) y el índice del atributo que se debe activar en el shader (locationIndex), 
-// los cuales utiliza, junto con la variable de instancia _colorsVertexBufferObject, para llamar al método 
-// SetAttributeData(...). Si la lista de colores está vacía o el número de elementos en la lista no coincide 
-// con el valor de _vertexCount, este método no hace nada.
+// El método SetColorAttribute(...) recibe una lista de colores de vértices (colors), un hint de uso del 
+// atributo en memoria (usage) y el índice del atributo que se debe activar en el shader (locationIndex), 
+// los cuales utiliza, junto con la variable de instancia _colorsVertexBufferObject, para llamar al método 
+// SetAttributeData(...). Si la lista de colores está vacía o el número de elementos en la lista no coincide 
+// con el valor de _vertexCount, este método no hace nada.
 void Mesh::SetColorAttribute(std::vector<glm::vec3> colors, GLenum usage, GLuint locationIndex) {
 	if (colors.size() == 0 || colors.size() != _vertexCount) {
 		return;
@@ -109,16 +113,16 @@ void Mesh::SetColorAttribute(std::vector<glm::vec4> colors, GLenum usage, GLuint
 	std::cout << "Colores vec3: " << colors.size() << std::endl;
 }
 
-// El método SetAttributeData(...) es el encargado de crear un nuevo VBO con los datos proporcionados. 
+// El método SetAttributeData(...) es el encargado de crear un nuevo VBO con los datos proporcionados. 
 // buffer es el identificador del VBO que se va a crear. Si buffer ya existe (ha sido creado antes por lo 
 // que es diferente de 0), primero se debe borrar para que siempre se cree uno nuevo (revisar manual de 
-// referencia en la presentación). size es el tamaño de la lista de datos en bytes. data son los datos en 
-// la lista del atributo. usage es un hint de uso que se le dará al atributo para determinar en qué tipo de 
-// memoria guardarlo. locationIndex es el índice del atributo que debe activarse en el shader. Finalmente, 
-// components es el número de componentes de cada uno de los elementos en la lista del atributo.
-// Por ejemplo, si se quiere mandar a llamar SetAttributeData(...), desde el método 
+// referencia en la presentación). size es el tamaño de la lista de datos en bytes. data son los datos en 
+// la lista del atributo. usage es un hint de uso que se le dará al atributo para determinar en qué tipo de 
+// memoria guardarlo. locationIndex es el índice del atributo que debe activarse en el shader. Finalmente, 
+// components es el número de componentes de cada uno de los elementos en la lista del atributo.
+// Por ejemplo, si se quiere mandar a llamar SetAttributeData(...), desde el método 
 // SetPositionAttribute(...), para crear el VBO del atributo de posiciones con componentes(x, y, z), 
-// se haría de la siguiente manera : 
+// se haría de la siguiente manera : 
 // SetAttributeData(_positionsVertexBufferObject, sizeof(glm::vec3) * positions.size(), positions.data(), 
 //					usage, locationIndex, 3);
 
@@ -133,7 +137,7 @@ void Mesh::SetNormalAttribute(std::vector<glm::vec3> normal, GLenum usage, GLuin
 void Mesh::SetTexCoordAttribute(std::vector<glm::vec2> texCoords, GLenum usage, GLuint locationIndex)
 {
 	if (texCoords.size() > 0 && texCoords.size() == _vertexCount)
-		SetAttributeData(_normalsVertexBufferObject, sizeof(glm::vec3) * texCoords.size(), texCoords.data(), usage, locationIndex, 2);
+		SetAttributeData(_texCoordsVertexBufferObject, sizeof(glm::vec2) * texCoords.size(), texCoords.data(), usage, locationIndex, 2);
 }
 
 void Mesh::SetAttributeData(GLuint buffer, const GLsizeiptr size, const void * data, GLenum usage,
@@ -160,8 +164,8 @@ void Mesh::SetAttributeData(GLuint buffer, const GLsizeiptr size, const void * d
 
 
 	// Creamos la memoria y la inicializamos con los datos del atributo de posiciones.
-	// size es el tamaño de la lista de datos en bytes. data son los datos en 
-	// la lista del atributo. usage es un hint de uso que se le dará al atributo para determinar en qué tipo de 
+	// size es el tamaño de la lista de datos en bytes. data son los datos en 
+	// la lista del atributo. usage es un hint de uso que se le dará al atributo para determinar en qué tipo de 
 	// memoria guardarlo.
 	glBufferData(GL_ARRAY_BUFFER, size, data, usage);
 

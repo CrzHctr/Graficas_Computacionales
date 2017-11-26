@@ -1,6 +1,6 @@
 ﻿#include "Shader.h"
 
-#include "Input.h"
+#include "InputFile.h"
 #include <iostream>
 #include <vector>
 

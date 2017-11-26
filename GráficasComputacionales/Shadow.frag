@@ -1,4 +1,4 @@
-#version 130
+#version 330
 
 in vec2 InterpolatedTexCoord;
 in vec3 InterpolatedColor;
@@ -11,7 +11,9 @@ out vec4 FragColor;
 uniform vec3 LightPosition;
 uniform vec3 LightColor;
 uniform vec3 CamaraPosition;
+uniform mat4 modelMatrix;
 uniform sampler2D DiffuseTexture;
+uniform sampler2D DiffuseTexture2;
 uniform sampler2D ShadowMap;
 
 float IsPixelOccluded(vec4 fragPosLightSpace)
@@ -37,14 +39,17 @@ float IsPixelOccluded(vec4 fragPosLightSpace)
 
 void main()
 {
-	vec3 ambient = 0.1f * LightColor;
-	vec3 L = normalize(LightPosition - PixelPosition);
-	vec3 N = normalize(InterpolatedNormal);
-	vec3 R = normalize(reflect(-L, N));
+
+	vec3 light = LightPosition;
+	vec3 camara = CamaraPosition;
+	vec3 ambient = 0.1f * normalize(LightColor);
+	vec3 L = normalize(light - PixelPosition);
+	vec3 R = normalize(reflect(-L, InterpolatedNormal));
 	vec3 V = normalize(CamaraPosition - PixelPosition);
-	vec3 diffuse = max(dot(N, L), 0.0f)*LightColor;
-	vec3 specular = 0.5f * pow(max(dot(V, R), 0.0f), 32.0f) * LightColor;
+	vec3 lcolor = LightColor;
+	vec3 diffuse = clamp(dot(InterpolatedNormal, L), 0,1)*normalize(LightColor);
+	vec3 specular = 0.5f * pow(clamp(dot(V,R),0,1),32)*normalize(LightColor);
 	float shadow = IsPixelOccluded(PixelPositionLightSpace);
 	vec3 phong = (ambient + (1.0f - shadow) * (diffuse + specular));
-	FragColor = texture2D(DiffuseTexture, InterpolatedTexCoord) * vec4(phong, 1.0f);
+	FragColor = vec4(phong, 1)* texture2D(DiffuseTexture, InterpolatedTexCoord);
 }
