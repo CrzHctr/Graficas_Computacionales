@@ -18,11 +18,10 @@ out vec4 PixelPositionLightSpace;
 
 
 void main(){
-	mat3 NormalMatrix = transpose(inverse(mat3(ModelMatrix)));
-	PixelPosition = vec3(ModelMatrix * vec4(VertexPosition, 1.0f));
-	PixelPositionLightSpace = LightVPMatrix*vec4(PixelPosition, 1.0);
 	InterpolatedColor = VertexColor;
-	gl_Position = mvpMatrix * vec4(VertexPosition, 1.0f);
-	InterpolatedNormal = NormalMatrix * VertexNormal;
+	InterpolatedNormal =  NormalMatrix * VertexNormal;
 	InterpolatedTexCoord = VertexTexCoord;
+	PixelPosition = vec3(ModelMatrix * vec4(VertexPosition, 1.0f));
+	PixelPositionLightSpace = LightVPMatrix * vec4(PixelPosition, 1.0);
+	gl_Position = mvpMatrix * vec4(VertexPosition, 1.0f);
 }

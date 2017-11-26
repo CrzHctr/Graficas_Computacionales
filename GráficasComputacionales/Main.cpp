@@ -513,6 +513,7 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()))));
 	glActiveTexture(GL_TEXTURE0);
 	_texture.Bind();
 	glActiveTexture(GL_TEXTURE1);
@@ -526,6 +527,7 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()*_dedo1_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix()*_dedo1_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()*_dedo1_1.GetModelMatrix()))));
 	glActiveTexture(GL_TEXTURE0);
 	_texture.Bind();
 	glActiveTexture(GL_TEXTURE1);
@@ -539,6 +541,7 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()*_dedo1_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix()*_dedo1_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()*_dedo1_2.GetModelMatrix()))));
 	glActiveTexture(GL_TEXTURE0);
 	_texture.Bind();
 	glActiveTexture(GL_TEXTURE1);
@@ -552,6 +555,7 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()*_dedo2_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix()*_dedo2_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()*_dedo2_1.GetModelMatrix()))));
 	glActiveTexture(GL_TEXTURE0);
 	_texture.Bind();
 	glActiveTexture(GL_TEXTURE1);
@@ -565,6 +569,7 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()*_dedo2_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix() * _dedo2_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()*_dedo2_2.GetModelMatrix()))));
 	glActiveTexture(GL_TEXTURE0);
 	_texture.Bind();
 	glActiveTexture(GL_TEXTURE1);
@@ -578,6 +583,7 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()*_dedo1_1.GetModelMatrix()*_dedo3_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix()*_dedo1_1.GetModelMatrix()*_dedo3_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()*_dedo1_1.GetModelMatrix()*_dedo3_1.GetModelMatrix()))));
 	glActiveTexture(GL_TEXTURE0);
 	_texture.Bind();
 	glActiveTexture(GL_TEXTURE1);
@@ -591,6 +597,7 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()*_dedo1_2.GetModelMatrix()*_dedo3_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix()*_dedo1_2.GetModelMatrix()*_dedo3_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()*_dedo1_2.GetModelMatrix()*_dedo3_2.GetModelMatrix()))));
 	glActiveTexture(GL_TEXTURE0);
 	_texture.Bind();
 	glActiveTexture(GL_TEXTURE1);
@@ -604,6 +611,7 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()*_dedo2_1.GetModelMatrix()*_dedo4_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix()*_dedo2_1.GetModelMatrix()*_dedo4_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()*_dedo2_1.GetModelMatrix()*_dedo4_1.GetModelMatrix()))));
 	glActiveTexture(GL_TEXTURE0);
 	_texture.Bind();
 	glActiveTexture(GL_TEXTURE1);
@@ -617,6 +625,8 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix() * _dedo2_2.GetModelMatrix()*_dedo4_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix()*_dedo2_2.GetModelMatrix() * _dedo4_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()*_dedo2_2.GetModelMatrix()*_dedo4_2.GetModelMatrix()))));
+
 	glActiveTexture(GL_TEXTURE0);
 	_texture.Bind();
 	glActiveTexture(GL_TEXTURE1);
@@ -639,6 +649,7 @@ void GameLoop()
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
+	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform2.GetModelMatrix()))));
 	glActiveTexture(GL_TEXTURE0);
 	_texture2.Bind();
 	glActiveTexture(GL_TEXTURE1);

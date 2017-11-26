@@ -48,5 +48,5 @@ void main()
 	vec3 specular = 0.5f * pow(clamp(dot(V,R),0,1),32)*normalize(LightColor);
 	float shadow = IsPixelOccluded(PixelPositionLightSpace);
 	vec3 phong = (ambient + (1.0f - shadow) * (diffuse + specular));
-	FragColor = vec4(phong, 1)* texture2D(DiffuseTexture, InterpolatedTexCoord);
+	FragColor = vec4(phong, 1.0f)* texture2D(DiffuseTexture, InterpolatedTexCoord);
 }
