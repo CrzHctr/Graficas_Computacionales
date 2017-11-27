@@ -45,7 +45,6 @@ DepthBuffer _depthBuffer;
 
 float radianes = 0.0f;
 float cambio = 0.0001;
-float escala = 0.5f;
 float inc = 0.0f;
 float movimiento = 0.3f;
 
@@ -268,13 +267,13 @@ void Initialize()
 	_mesh.SetIndices(indices, GL_STATIC_DRAW);
 
 	//CREO QUE ESTOS SON LOS DEDOS
-	_mesh2.CreateMesh(positions.size());
+	_mesh2.CreateMesh(positionsFingers.size());
 	_mesh2.SetIndices(indices, GL_STATIC_DRAW);
 	_mesh2.SetPositionAttribute(positionsFingers, GL_STATIC_DRAW, 0);
 	_mesh2.SetColorAttribute(colors, GL_STATIC_DRAW, 1);
 	_mesh2.SetNormalAttribute(normales, GL_STATIC_DRAW, 2);
 	_mesh2.SetTexCoordAttribute(Textura, GL_STATIC_DRAW, 3);
-	_mesh2.SetIndices(indices, GL_STATIC_DRAW);
+	//_mesh2.SetIndices(indices, GL_STATIC_DRAW);
 
 	/////////////////////////////////////////////////////////////////////////
 
@@ -298,94 +297,21 @@ void Initialize()
 	_shaderProgram.LinkProgram();
 	_shaderDepth.LinkProgram();
 
-
-
-
-	/*_shaderProgram.Activate();
-	_shaderProgram.SetUniformf("LightPosition", glm::vec3(0.0f, 5.0f, 1.0f));
-	_shaderProgram.SetUniformf("CameraPosition", glm::vec3(0.0f, 1.0f, 2.0f));
-	//_shaderProgram.SetUniformi("DiffuseTexture", 0);
-	//_shaderProgram.SetUniformi("ShadowMap", 1);
-	_shaderProgram.Deactivate();*/
-
 	/////////////////////////////////CAMARAS
-	/*_camera.MoveForward(30.0f);
-	_camera.MoveUp(12.0f);
-	_caemraLight.SetOrthographic(30.0f, 1);
-	_caemraLight.SetPosition(10, 37, 0);
-	_caemraLight.Pitch(-30);*/
 
-	/*_camera.SetPosition(0.0f, 8.0f, 10.0f);
-	_camera.Rotate(-20.0f, 0.0f, 0.0f, false);
-	_caemraLight.SetOrthographic(15.0f, 1.0);
-	_caemraLight.SetPosition(-3.0, 6.0, 0.0);
-	_caemraLight.Pitch(-90);
-	_caemraLight.Rotate(-50.0f, 0.0f, 0.0f, false);*/
+	_camera.SetPosition(0.0f, 8.0f, 35.0f);
+	_caemraLight.SetPosition(0.0f, -8.0f, 5.0f);
+	_caemraLight.Pitch(-130);
+	_caemraLight.SetOrthographic(50.0f, 1);
+	//////////////////////////////////
 
-	_camera.MoveForward(25.0f);
-	_caemraLight.SetOrthographic(15.0f, 1);
-	_caemraLight.SetPosition(10, 6, 0);
-	_caemraLight.Pitch(-30);
-	//////////////////////////////////CAMARAS
-
-
-	////////////////////////////////////////////////////////////////////////////
-	/*
-	_shaderProgram.Activate();
-	_shaderProgram.SetUniformf("LightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-	_shaderProgram.SetUniformf("LightPosition", glm::vec3(0.0f, 5.0f, 0.0f));
-	_shaderProgram.SetUniformi("DiffuseTexture", 0);
-	_shaderProgram.Deactivate();
-	_shaderProgram.LinkProgram();
-	_transform.SetPosition(0.0f, -12.0f, 0.0f);
-	_transform.SetScale(10.0f, 2.0f, 10.0f);
-	_texture3.LoadTexture("Piso.jpg");
-	_shaderProgram2.CreateProgram();
-	_shaderProgram2.AttachShader("Phong.verg", GL_VERTEX_SHADER);
-	_shaderProgram2.AttachShader("Phong.frag", GL_FRAGMENT_SHADER);
-	_shaderProgram2.SetAttribute(0, "VertexPosition");
-	_shaderProgram2.SetAttribute(1, "VertexColor");
-	_shaderProgram2.SetAttribute(2, "VertexNormal");
-	_shaderProgram2.SetAttribute(3, "VertexTexCoord");
-	_shaderProgram2.LinkProgram();
-	_shaderProgram2.Activate();
-	_shaderProgram2.SetUniformf("LightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-	_shaderProgram2.SetUniformf("LightPosition", glm::vec3(0.0f, 0.0f, 10.0f));
-	_shaderProgram2.SetUniformi("DiffuseTexture", 0);
-	_shaderProgram2.Deactivate();*/
-	//_camera.MoveForward(25.0f);
-	//_transform2.SetScale(10, 0.5f, 10);
-	//_transform2.MoveUp(-10, true);
-	//_shaderProgram.SetUniformVec3("LightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-	//_shaderProgram.SetUniformVec3("LightPosition", glm::vec3(0.0f, 0.0f, 10.0f));
-
-	//_transform.SetScale(20.0f, 1.0f, 20.0f);
-
-	//_transform.SetScale(0.3f, 0.3f, 0.3f);
-	//_transform.SetPosition(0.0f, 0.0f, 0.0f);
-
-	//_transform2.SetScale(8.0f, 0.01f, 8.0f);
-	//_transform2.SetPosition(0.0f, -12.0f, 0.0f);
-
-	//_camera.SetPosition(0.0f, 0.0f, 10.0f);
-	//_camera.Rotate(-30.0f, 0.0f, 0.0f,false);
-
-	//_transform2.SetPosition(-20.0f, 6.0f, -50.0f);
-
-	//_camera.MoveForward(10);
-	//////////////////////////////////////////////////CORREGIR
-
-	//_transform.SetRotation(-45.0f, 0.0f, 0.0f);
-	//_transform2.SetScale(30.0f, 0.5f, 30.0f);
-	//_transform2.SetPosition(0.0f, -5.0f, 0.0f);
-	//_transform2.SetRotation(0.0f, 0.0f, 0.0f);
-	//_transform.MoveUp(3, true);
-	_transform2.SetScale(200, 0.7f, 200);
-	_transform2.SetPosition(-25.0f, 2.2f, -15.0f);
-	_transform2.MoveUp(-10, true);
-	_transform2.MoveRight(-20.0, true);
+	_transform.MoveUp(1, true);
+	_transform2.SetScale(150, 0.5, 150);
+	_transform2.MoveUp(-7, true);
+	_transform2.MoveRight(-15, true);
 
 	//MEÑIQUE 
+	//_dedo1_1.SetPosition(0.0f, 2.5f, 0.0f);
 	_dedo1_1.MoveUp(7.0f, true);
 	_dedo1_1.MoveRight(-3.0, true);
 
@@ -413,9 +339,9 @@ void Initialize()
 
 	//PULGAR SUPERIOR
 	_dedo4_2.MoveUp(4.5f, true);
-	_transform.Rotate(-73.0f, 0.00f, 0.0f, true);
+	_transform.Rotate(-73.0f, 0.0f, 0.0f, true);
 	//////////////////////////////////////////////////
-	
+
 }
 
 void GameLoop()
@@ -433,7 +359,7 @@ void GameLoop()
 
 	//True gira en los vectores globales
 	//False gira en los vectores locales
-	
+
 	//_depthBuffer.Bind();
 
 	///////////////////////////////////////////////////////CORREGIR
@@ -443,7 +369,6 @@ void GameLoop()
 	inc += movimiento;
 
 	_dedo1_1.Rotate(movimiento, 0, 0, false);
-	//_transform.SetPosition(5.0f*glm::cos(glm::radians(radianes)), 5.0f*glm::sin(glm::radians(radianes)), 0.0f);
 	_dedo1_1.MoveForward(movimiento / 30 + glm::sin(glm::radians(movimiento)), false);
 
 	_dedo1_2.Rotate(movimiento, 0, 0, false);
@@ -503,7 +428,7 @@ void GameLoop()
 
 	_shaderProgram.Activate();
 	_shaderProgram.SetUniformf("LightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-	_shaderProgram.SetUniformf("LightPosition", glm::vec3(0.0f, 5.0f, 0.0f));
+	_shaderProgram.SetUniformf("LightPosition", glm::vec3(0.0f, 5.0f, 10.0f));
 	_shaderProgram.SetUniformf("CamaraPosition", glm::vec3(0.0f, 1.0f, 2.0f));
 	_shaderProgram.SetUniformi("DiffuseTexture", 0); //hola
 	_shaderProgram.SetUniformi("ShadowMap", 1);
@@ -524,13 +449,13 @@ void GameLoop()
 	glActiveTexture(GL_TEXTURE1);
 	_depthBuffer.UnbindDepthMap();
 
+	glActiveTexture(GL_TEXTURE0);
+	_texture.Bind();
+	glActiveTexture(GL_TEXTURE2);
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()*_dedo1_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix()*_dedo1_1.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
 	_shaderProgram.SetUniformMatrix("NormalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform.GetModelMatrix()*_dedo1_1.GetModelMatrix()))));
-	glActiveTexture(GL_TEXTURE0);
-	_texture.Bind();
-	glActiveTexture(GL_TEXTURE1);
 	_depthBuffer.BindDepthMap();
 	_mesh2.Draw(GL_TRIANGLES);
 	glActiveTexture(GL_TEXTURE0);
@@ -538,6 +463,7 @@ void GameLoop()
 	glActiveTexture(GL_TEXTURE1);
 	_depthBuffer.UnbindDepthMap();
 
+	//DEDO INDICE
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()*_dedo1_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix()*_dedo1_2.GetModelMatrix());
 	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
@@ -638,12 +564,6 @@ void GameLoop()
 	_depthBuffer.UnbindDepthMap();
 
 	/////////////////////////////////////////////////////////////////////////////
-	/*_shaderProgram2.Activate();
-	_shaderProgram2.SetUniformf("LightPosition", glm::vec3(0.0f, 5.0f, 1.0f));
-	_shaderProgram2.SetUniformf("CameraPosition", glm::vec3(0.0f, 1.0f, 2.0f));
-	_shaderProgram2.SetUniformi("DiffuseTexture1", 1);
-	_shaderProgram2.SetUniformi("ShadowMap", 1);*/
-	/////////////////////////////////////////////////////////////////////////////
 	/////////////////ESTE ES EL PISO!!!!
 	_shaderProgram.Activate();
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform2.GetModelMatrix());
@@ -667,81 +587,6 @@ void GameLoop()
 	//_transform.Rotate(0.005f, 0.005f, 0.005f, false);
 	//_transform.SetPosition(5.0f*glm::cos(glm::radians(radianes)), 5.0f*glm::sin(glm::radians(radianes)), 0.0f);
 	radianes += 0.005f;
-
-	/*if (escala <= 0.25f) {
-	cambio *= -1;
-	}
-	else if (escala >= 1.0f) {
-	cambio *= -1;
-	}
-	escala += cambio;*/
-
-
-	//_transform2.Rotate(-0.005f, -0.005f, -0.005f, false);
-	//_transform2.SetScale(escala, escala, escala);
-
-	//_shaderProgram2.Activate();
-	/*_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform2.GetModelMatrix());
-	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix());
-	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform.GetModelMatrix());
-	glActiveTexture(GL_TEXTURE0);
-	_texture.Bind();
-	glActiveTexture(GL_TEXTURE1);
-	glActiveTexture(GL_TEXTURE1);
-	_mesh.Draw(GL_TRIANGLES);
-	glActiveTexture(GL_TEXTURE0);
-	_texture.Unbind();
-	glActiveTexture(GL_TEXTURE1);
-	_depthBuffer.UnbindDepthMap();
-	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix());
-	_shaderProgram.SetUniformMatrix("ModelMatrix", _transform2.GetModelMatrix());
-	_shaderProgram.SetUniformMatrix("LightVPMatrix", _caemraLight.GetViewProjection());
-	glActiveTexture(GL_TEXTURE0);
-	_texture2.Bind();
-	glActiveTexture(GL_TEXTURE1);
-	_depthBuffer.BindDepthMap();
-	_mesh.Draw(GL_TRIANGLES);
-	glActiveTexture(GL_TEXTURE0);
-	_texture2.Unbind();
-	glActiveTexture(GL_TEXTURE1);
-	_depthBuffer.UnbindDepthMap();
-	_shaderProgram.Deactivate();
-	*/
-
-	//_shaderProgram.Deactivate();
-
-
-	//_shaderProgram.Activate();
-	//_shaderProgram2.Activate();
-	//_shaderProgram2.SetUniformMatrix("normalMatrix", glm::transpose(glm::inverse(glm::mat3(_transform2.GetModelMatrix()))));
-	//_shaderProgram2.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection()* _transform2.GetModelMatrix());
-	//glm::vec3 newCamera = _camera.GetPosition();
-	//_shaderProgram2.SetUniformf("cameraPosition", newCamera);
-	//_shaderProgram2.SetUniformMatrix("ModelMatrix", _transform2.GetModelMatrix());
-
-
-
-	//_texture.LoadTexture("caja.jpg");
-	/*_shaderProgram.SetUniformMatrix("modelMatrix", _transform.GetModelMatrix());
-	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix());
-	_shaderProgram.SetUniformi("DiffuseTexture", 0);
-	glActiveTexture(GL_TEXTURE0);
-	_texture.Bind();
-	_mesh.Draw(GL_TRIANGLES);
-	glActiveTexture(GL_TEXTURE0);
-	_texture.Unbind();
-	_shaderProgram.Deactivate();
-	_shaderProgram.Activate();
-	//_texture2.LoadTexture("piso.jpg");
-	_shaderProgram.SetUniformMatrix("modelMatrix", _transform2.GetModelMatrix());
-	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform2.GetModelMatrix());
-	_shaderProgram.SetUniformi("DiffuseTexture", 0);
-	glActiveTexture(GL_TEXTURE0);
-	_texture2.Bind();
-	_mesh.Draw(GL_TRIANGLES);
-	glActiveTexture(GL_TEXTURE0);
-	_texture2.Unbind();
-	_shaderProgram.Deactivate();*/
 
 
 	_shaderProgram.Deactivate();
